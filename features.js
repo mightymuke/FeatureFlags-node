@@ -272,8 +272,8 @@ function parseOptions() {
 
       case 'e':
 
-        if (option.optarg.length < 4) {
-          console.log('invalid option: "' + option.option + ' ' + option.optarg + '" specify 4 environments');
+        if (option.optarg.length !== 3) {
+          console.log('invalid option: "' + option.option + ' ' + option.optarg + '" specify 3 environments');
           process.exit(1);
           break;
         }
