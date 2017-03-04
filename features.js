@@ -36,6 +36,7 @@
  */
 var exec = require('child_process').exec;
 var Promise = require('bluebird');
+var path = require('path');
 var getopt = require('posix-getopt');
 var fs = Promise.promisifyAll(require('fs'));
 var Mustache = require('mustache');
@@ -73,7 +74,7 @@ function generateFeaturesJs(features) {
 
   fs.writeFileAsync(viewFile, view, { flag: 'w+'})
     .then(function() {
-      console.log(viewFile + ' generated');
+      console.log(`Features file ${path.basename(viewFile)} generated`);
     })
     .catch(function(err) {
       console.error(err);
@@ -116,7 +117,7 @@ function saveFeaturesToFile(features, env) {
 
   fs.writeFileAsync(file, JSON.stringify(features, null, '  '), { flag: 'w+'})
     .then(function() {
-      console.log('Config ' + file + ' updated');
+      console.log('Config ' + path.basename(file) + ' updated');
 
       if (env === 'dev') {
         generateFeaturesJs(features);
